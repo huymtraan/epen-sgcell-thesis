@@ -1,0 +1,39 @@
+name: ependymoma-downstream
+
+channels:
+  - bioconda
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  # Python/Scanpy analysis stack
+  - python=3.12
+  - scanpy=1.11.5
+  - anndata>=0.12,<0.13
+  - numpy>=2.3,<3
+  - pandas>=2.3,<3
+  - scipy>=1.16,<2
+  - matplotlib>=3.10,<4
+  - seaborn>=0.13,<0.14
+  - scikit-learn>=1.7,<2
+  - statsmodels>=0.14,<0.15
+  - pyyaml>=6,<7
+  - harmonypy=0.0.10
+  - python-igraph>=1.0,<2
+  - leidenalg>=0.11,<0.12
+  - scrublet=0.2.3
+  - gseapy=1.1.11
+
+  # R bridge used for deviance feature selection and CopyKAT
+  - r-base>=4.4,<4.6
+  - rpy2>=3.6,<3.7
+  - anndata2ri=2.0
+  - bioconductor-singlecellexperiment>=1.28
+  - bioconductor-scry>=1.18
+  - r-stringr>=1.5
+  - r-remotes
+
+  # infercnvpy 0.6.1 was installed with pip in the original environments.
+  - pip
+  - pip:
+      - infercnvpy==0.6.1

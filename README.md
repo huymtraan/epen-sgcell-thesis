@@ -56,11 +56,22 @@ Core defaults are defined in [`config/analysis.yaml`](config/analysis.yaml):
 
 ## Usage
 
-Install the package and run each stage in order:
+Create the Conda/Mamba environment, install CopyKAT in its R library, then
+register the local command-line package:
 
 ```bash
-pip install -e .
+conda env create -f environment.yml
+conda activate ependymoma-downstream
+R -e 'remotes::install_github("navinlabcode/copykat@b7a4763d5c72e8757e1fd78dc17ab93671ec108f")'
+python -m pip install -e . --no-deps
+```
 
+The final command only exposes the local `ependymoma-analysis` CLI; analysis
+dependencies are managed by Conda/Mamba through `environment.yml`.
+
+Run each stage in order:
+
+```bash
 ependymoma-analysis qc          --input data/concatenated.h5ad --output outputs/01_qc.h5ad
 ependymoma-analysis normalize   --input outputs/01_qc.h5ad --output outputs/02_pca.h5ad
 ependymoma-analysis integrate   --input outputs/02_pca.h5ad --output outputs/03_harmony.h5ad
@@ -69,9 +80,7 @@ ependymoma-analysis copykat     --input outputs/04_clustered.h5ad --output outpu
 ependymoma-analysis annotate    --input outputs/05_copykat.h5ad --output outputs/06_annotated.h5ad
 ```
 
-All commands use `config/analysis.yaml` by default. Deviance selection requires
-R packages `SingleCellExperiment` and `scry`; CopyKAT requires `copykat`,
-`stringr`, `rpy2`, and `infercnvpy`.
+All commands use `config/analysis.yaml` by default.
 
 ## Repository contents
 
