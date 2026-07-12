@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "Ependymoma single-cell downstream analysis"
+message: "Please cite the thesis and underlying public datasets when using this code."
+type: software
+authors:
+  - family-names: Tran
+    given-names: Thai Huy
+version: 0.1.0
+date-released: 2026-07-12

@@ -1,0 +1,4 @@
+step	cells_retained	removed_this_step	removed_cumulative	samples_retained
+load	407126	0	0	46
+basic_qc_mad	307200	99926	99926	46
+remove_doublets	305210	1990	101916	46

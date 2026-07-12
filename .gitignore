@@ -1,0 +1,45 @@
+# Sequencing and single-cell data
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.cram
+*.mtx
+*.mtx.gz
+*.h5
+*.h5ad
+*.loom
+*.rds
+
+# Workflow/reference artifacts
+work/
+.nextflow/
+.nextflow.log*
+cellranger_ref/
+references/
+
+# Runtime output
+output/
+outputs/
+results/
+logs/
+*.out
+*.err
+slurm-*.out
+
+# Python/notebooks
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Local configuration
+.env
+*.local.yaml
+.DS_Store

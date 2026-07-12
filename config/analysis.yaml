@@ -1,0 +1,70 @@
+input:
+  sample_key: sample
+  project_key: project
+  gene_symbols_key: gene_symbols
+  counts_layer: counts
+
+qc:
+  min_genes: 100
+  min_cells: 3
+  max_pct_mito: 40.0
+  nmads: 3.0
+  mad_metrics:
+    - log1p_total_counts
+    - log1p_n_genes_by_counts
+    - pct_counts_in_top_20_genes
+  scrublet_n_prin_comps: 30
+  scrublet_random_state: 0
+
+normalization:
+  target_sum: null
+  log_layer: log1p_norm
+  n_top_genes: 2000
+  batch_aware_deviance: true
+  # Implementation evidence in 2000HVG_rg_cc_mt; omitted from thesis Methods.
+  regress_covariates:
+    - S_score
+    - G2M_score
+    - pct_counts_mt
+
+dimensionality:
+  n_pcs: 50
+  pca_solver: arpack
+  batch_key: sample
+  harmony_basis: X_pca
+  harmony_adjusted_basis: X_pca_harmony
+  n_neighbors: 15
+  random_state: 0
+
+clustering:
+  resolution: 0.4
+  key: leiden_0_4
+  flavor: igraph
+  n_iterations: 2
+  random_state: 0
+
+differential_expression:
+  method: wilcoxon
+  layer: log1p_norm
+  reference: rest
+  pts: true
+  key: rank_genes_groups_leiden_0_4
+
+enrichment:
+  gene_set: GO_Biological_Process_2021
+  top_n_genes: 1000
+  adjusted_pvalue_max: 0.05
+
+copykat:
+  sample_key: sample
+  project_key: project
+  counts_layer: counts
+  key_added: cnv_cpkat
+  prediction_key: copykat_pred
+  min_cells: 200
+  n_jobs: 8
+  # Remaining CopyKAT parameters use infercnvpy/CopyKAT defaults, matching thesis.
+
+annotation:
+  cluster_key: leiden_0_4
+  label_key: cell_type_leiden_0_4_cluster_manual
