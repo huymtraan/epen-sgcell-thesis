@@ -1,0 +1,26 @@
+# Scientific data and generated outputs
+*.h5ad
+*.h5
+*.rds
+*.loom
+*.mtx
+*.mtx.gz
+outputs/
+logs/
+
+# Notebook/Python runtime files
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Scheduler logs
+*.out
+*.err
+slurm-*.out
+
+# Local overrides
+.env
+*.local
+*.local.*
